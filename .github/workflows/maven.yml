@@ -1,8 +1,9 @@
 name: Java CI with Maven build tool
 on:
+  workflow_dispatch:
   push:
     branches: [ self-hosted ]
-  workflow_dispatch:
+  
     
 jobs:
   build:
