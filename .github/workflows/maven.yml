@@ -1,10 +1,11 @@
 name: Java CI with Maven build tool
 on:
-  workflow_dispatch:
+  push:
+    branches: [ self-hosted ]
     
 jobs:
   build:
-      uses: prasadthorati/thymeleafexamples-petclinic/.github/workflows/build.yml@2.1-master
+      uses: prasadthorati/thymeleafexamples-petclinic/.github/workflows/build.yml@self-hosted
 #      secrets: 
 #        ghcr_username: ${{ secrets.GHCR_USERNAME }}
 #        ghcr_token: ${{ secrets.GHCR_TOKEN }}
