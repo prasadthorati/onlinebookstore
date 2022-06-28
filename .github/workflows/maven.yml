@@ -1,6 +1,7 @@
 name: Java CI with Maven build tool
 on:
-  workflow_dispatch:
+  push:
+    branches: [ self-hosted ]
 jobs:
   build:
       uses: prasadthorati/thymeleafexamples-petclinic/.github/workflows/build.yml@self-hosted
