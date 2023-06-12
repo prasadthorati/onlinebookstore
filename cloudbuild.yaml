@@ -15,4 +15,4 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'push'
-  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/Book-Demo:$SHORT_SHA'
+  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
