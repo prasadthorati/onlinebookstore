@@ -1,0 +1,11 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: book-demo
+spec:
+  template:
+    spec:
+      containers:
+        - image: asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA
+          ports:
+            - containerPort: 8080
