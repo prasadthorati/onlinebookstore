@@ -7,7 +7,7 @@ steps:
   args:
   - 'build'
   - '-t'
-  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
+  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-$PIPELINE:$SHORT_SHA'
   - '.'
   - '-f'
   - 'Dockerfile'
@@ -15,10 +15,10 @@ steps:
 - name: 'gcr.io/cloud-builders/docker'
   args:
   - 'push'
-  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
-  
+  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-$PIPELINE:$SHORT_SHA'
+
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
-  args: ['run', 'deploy', 'book-demo', '--image', 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA', '--region', 'asia-south1']
+  args: ['run', 'deploy', 'book-demo', '--image', 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-$PIPELINE:$SHORT_SHA', '--region', 'asia-south1']
 images:
-- asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA
+- asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-$PIPELINE:$SHORT_SHA
