@@ -17,9 +17,11 @@ steps:
   - 'push'
   - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
   
-- name: 'gcr.io/cloud-builders/approval'
+- name: 'gcr.io/cloud-builders/gcloud'
   args:
+  - 'builds'
   - 'approve'
+  - '$BUILD_ID'
   
 - name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: gcloud
