@@ -5,6 +5,11 @@ steps:
 
 - name: 'gcr.io/sonarqube-repo/sonar-scanner'
   args:
+    - 'run'
+    - '--rm'
+    - '-v'
+    - '$PWD:/usr/src'
+    - 'sonarsource/sonar-scanner-cli:latest'
     - '-Dsonar.host.url=http://52.66.82.141:9000/'
     - '-Dsonar.login=squ_e231b2f07f0c58a817169cc3d7e785d668688f8b' 
     - '-Dsonar.projectKey=maven-sonar' 
