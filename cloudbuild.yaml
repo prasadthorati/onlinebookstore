@@ -3,22 +3,32 @@ steps:
   entrypoint: mvn
   args: ['package','-Dmaven.test.skip=true']
 
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-  - 'build'
-  - '-t'
-  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
-  - '.'
-  - '-f'
-  - 'Dockerfile'
+- name: 'gcr.io/sonarqube-repo/sonar-scanner'
+    args:
+      - '-Dsonar.host.url=http://52.66.82.141:9000/'
+      - '-Dsonar.login=squ_e231b2f07f0c58a817169cc3d7e785d668688f8b' 
+      - '-Dsonar.projectKey=maven-sonar' 
+      - '-Dsonar.sources=.' 
+      - '-Dsonar.tests=.'  
+      - '-Dsonar.coverage.jacoco.xmlReportPaths=coverage.xml'
 
-- name: 'gcr.io/cloud-builders/docker'
-  args:
-  - 'push'
-  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
-  
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
-  entrypoint: gcloud
-  args: ['run', 'deploy', 'book-demo', '--image', 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA', '--region', 'asia-south1']
-images:
-- asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA
+#- name: 'gcr.io/cloud-builders/docker'
+#  args:
+#  - 'build'
+#  - '-t'
+#  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
+#  - '.'
+#  - '-f'
+#  - 'Dockerfile'
+#
+#- name: 'gcr.io/cloud-builders/docker'
+#  args:
+#  - 'push'
+#  - 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA'
+#  
+#- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+#  entrypoint: gcloud
+#  args: ['run', 'deploy', 'book-demo', '--image', 'asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA', '--region', 'asia-south1']
+#images:
+#- asia-south1-docker.pkg.dev/grafana-monitoring-demo/demo-repo/book-demo:$SHORT_SHA
+#
